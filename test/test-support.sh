@@ -1,6 +1,7 @@
 #!/bin/sh
 # vim: set ts=4 :
 STEVE_OUTPUT=steve-output
+PROWL_STUB_OUTPUT=`pwd -P`/prowl-output
 
 function AssertEqual {
     if [ -z "$1" ] || [ -z "$2" ]

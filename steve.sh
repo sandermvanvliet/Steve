@@ -70,8 +70,13 @@ do
     echo "Cloning from $REPO_URI"
     git clone "$REPO_URI" "$REQUEST_WORKING_DIR"
 
+    CWD=`pwd -P`
     cd "$REQUEST_WORKING_DIR"
 
     echo "Checking out to commit $COMMIT"
     git checkout $COMMIT
+
+    cd $CWD
+
+    $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
 done
