@@ -70,9 +70,12 @@ do
     echo "Checking out to commit $COMMIT"
     git checkout $COMMIT
 
+    BUILD_STATUS=0
+
     if [ -f "buildandpublish.steve" ]
     then
-      /bin/sh "buildandpublish.steve"
+      /bin/sh "buildandpublish.steve" 2>&1 $QUEUE/$request.log
+      BUILD_STATUS=$?
     else
       echo "Steve script not found"
     fi
@@ -81,5 +84,10 @@ do
 
     rm "$QUEUE/$request.request"
 
-    $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
+    if [ $BUILD_STATUS -ne 0 ]
+    then
+      $NOTIFIER "Steve" 2 "Build failed" "Commit $COMMIT"
+    else
+      $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
+    fi
 done
