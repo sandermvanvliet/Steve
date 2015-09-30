@@ -15,7 +15,14 @@ COUNTER=1
 TESTS_PASSED=0
 TESTS_FAILED=0
 
-for testfile in `find . -type f \( -name "*.test.sh" \)`
+if [ ! -z "$1" ]
+then
+    TESTS="$1"
+else
+    TESTS=`find . -type f \( -name "*.test.sh" \)`
+fi
+
+for testfile in $TESTS 
 do
     testname=`echo $testfile | sed -e 's/\.test\.sh//' | sed -e 's/\.\///'`
 
