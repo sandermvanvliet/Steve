@@ -15,3 +15,5 @@ EXITCODE=$?
 
 #### Assert: Check expected results
 AssertEqual $EXITCODE 0
+TestFailure "Test outcome inconclusive"
+exit 1
