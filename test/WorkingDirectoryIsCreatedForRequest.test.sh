@@ -11,6 +11,10 @@ if [ ! -d $QUEUE ]
 then
   mkdir $QUEUE
 fi
+if [ ! -d $WORKING_DIR ]
+then
+  mkdir $WORKING_DIR
+fi
 
 rm -f $QUEUE/*.request
 
@@ -23,7 +27,7 @@ EXITCODE=$?
 #### Assert: Check expected results
 AssertEqual $? 0
 
-if [ ! -d $STEVE_WORKING_DIR/20150102122020 ]
+if [ ! -d $WORKING_DIR/20150102122020 ]
 then
   TestFailure "Working directory not created for request"
   exit 1
