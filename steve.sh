@@ -5,7 +5,7 @@ VERSION="0.0.1"
 
 if [ -z $STEVE_CONFIG ]
 then
-    STEVE_CONFIG=/etc/conf.d/steve
+    STEVE_CONFIG=/usr/local/etc/steve.conf
 fi
 
 echo "Steve version $VERSION"
@@ -78,6 +78,8 @@ do
     fi
 
     cd $CWD
+
+    rm "$QUEUE/$request.request"
 
     $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
 done
