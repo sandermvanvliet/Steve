@@ -23,7 +23,7 @@ do
 
     TESTERROR="$(/bin/sh $testfile 2>&1 > /dev/null)"
 
-    if [ $? -eq 1 ]
+    if [ $? -ne 0 ]
     then
       echo "\033[0;31m[FAILED]\033[0m $TESTERROR" > /dev/stderr
       let TESTS_FAILED=$TESTS_FAILED+1
