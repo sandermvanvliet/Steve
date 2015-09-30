@@ -23,6 +23,12 @@ touch $QUEUE/20150102123030.request
 EXITCODE=$?
 
 #### Assert: Check expected results
-OutputContains "Running request 20150102122020"
-OutputContains "Running request 20150102123030"
-OutputContains "Running request 20150102125050"
+arr=()
+while read -r line;
+do
+  arr+=("$line")
+done <<< "`grep "Running request" $STEVE_OUTPUT`"
+
+AssertEqual "${arr[0]}" "Running request 20150102122020"
+AssertEqual "${arr[1]}" "Running request 20150102123030"
+AssertEqual "${arr[2]}" "Running request 20150102125050"
