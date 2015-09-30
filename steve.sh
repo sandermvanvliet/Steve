@@ -31,7 +31,7 @@ then
   exit 1
 fi
 
-NUMBER_OF_REQUESTS=`find $QUEUE -type f | wc -l`
+NUMBER_OF_REQUESTS=`find $QUEUE -type f | wc -l | tr -d '[[:space;]]'`
 
 if [ $NUMBER_OF_REQUESTS -eq 0 ]
 then
@@ -41,7 +41,7 @@ fi
 
 echo "$NUMBER_OF_REQUESTS requests pending"
 
-for request in `ls $QUEUE/*.request | sort -V`
+for request in `find $QUEUE -type f \( -name *.request \) -exec basename {} \; | sort`
 do
-    echo "Running $request"
+    echo "Running request $request"
 done
