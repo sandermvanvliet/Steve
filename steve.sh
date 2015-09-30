@@ -60,5 +60,6 @@ do
 
     REPO_URI=`cat "$QUEUE/$request.request"`
 
+    echo "Cloning from $REPO_URI"
     git clone "$REPO_URI" "$REQUEST_WORKING_DIR"
 done
