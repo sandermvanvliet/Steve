@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cp steve.sh /usr/local/bin/steve.sh
+cp steve.conf /usr/local/bin/steve.conf
