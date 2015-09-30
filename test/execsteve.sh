@@ -1,3 +1,5 @@
 #!/bin/sh
 
-STEVE_CONFIG=test-steve.conf ../steve.sh > steve-output 2>&1
+. ./test-support.sh
+
+STEVE_CONFIG=test-steve.conf ../steve.sh > $STEVE_OUTPUT 2>&1
