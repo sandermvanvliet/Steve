@@ -57,4 +57,8 @@ do
       echo "Creating working directory for request..."
       mkdir $REQUEST_WORKING_DIR
     fi
+
+    REPO_URI=`cat "$QUEUE/$request.request"`
+
+    git clone "$REPO_URI" "$REQUEST_WORKING_DIR"
 done
