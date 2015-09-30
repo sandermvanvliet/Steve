@@ -58,14 +58,8 @@ do
       mkdir $REQUEST_WORKING_DIR
     fi
 
-    arr=()
-    while read -r line
-    do
-      arr+=("$line")
-    done <<< "`cat "$QUEUE/$request.request"`"
-
-    REPO_URI=${arr[0]}
-    COMMIT=${arr[1]}
+    REPO_URI=`head -n 1 "$QUEUE/$request.request"`
+    COMMIT=`tail -n 1 "$QUEUE/$request.request"`
 
     echo "Cloning from $REPO_URI"
     git clone "$REPO_URI" "$REQUEST_WORKING_DIR"
