@@ -14,6 +14,8 @@ fi
 if [ ! -d $WORKING_DIR ]
 then
   mkdir $WORKING_DIR
+else
+  rmdir $WORKING_DIR/*
 fi
 
 rm -f $QUEUE/*.request

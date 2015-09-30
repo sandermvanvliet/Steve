@@ -44,4 +44,17 @@ echo "$NUMBER_OF_REQUESTS requests pending"
 for request in `find $QUEUE -type f \( -name *.request \) -exec basename {} \; | sed -e 's/\.request//' | sort`
 do
     echo "Running request $request"
+    REQUEST_WORKING_DIR="$WORKING_DIR/$request"
+
+    if [ ! -d $WORKING_DIR ]
+    then
+      echo "Working directory \"$WORKING_DIR\" doesn't exist, creating..."
+      mkdir $WORKING_DIR
+    fi
+
+    if [ ! -d $REQUEST_WORKING_DIR ]
+    then
+      echo "Creating working directory for request..."
+      mkdir $REQUEST_WORKING_DIR
+    fi
 done
