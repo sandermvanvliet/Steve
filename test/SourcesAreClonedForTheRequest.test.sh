@@ -20,6 +20,16 @@ fi
 
 rm -f $QUEUE/*.request
 
+# Clean up possible stale repository
+if [ -d testdata/repo ]
+then
+  rm -rf testdata/repo
+fi
+
+# Extract test repository
+tar -zxf testdata/repo.tar.gz -C testdata
+
+# Git seems to require absolute path to repository
 PATH_TO_REPO="`pwd -P`/testdata/repo"
 echo "PATH_TO_REPO: $PATH_TO_REPO"
 echo "file:////$PATH_TO_REPO" > $QUEUE/20150102122020.request
