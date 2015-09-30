@@ -42,5 +42,5 @@ function TestFailure {
         exit 1
     fi
 
-    echo "\033[0;31m[FAILED]\033[0m $1" > /dev/stderr
+    echo "$1" > /dev/stderr
 }

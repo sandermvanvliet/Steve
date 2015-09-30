@@ -12,7 +12,7 @@ then
 fi
 
 COUNTER=1
-TESTS_SUCCEEDED=0
+TESTS_PASSED=0
 TESTS_FAILED=0
 
 for testfile in `find . -type f \( -name "*.test.sh" \)`
@@ -21,22 +21,22 @@ do
 
     echo "[$testname] \c"
 
-    /bin/sh $testfile
+    TESTERROR="$(/bin/sh $testfile 2>&1 > /dev/null)"
 
     if [ $? -eq 1 ]
     then
+      echo "\033[0;31m[FAILED]\033[0m $TESTERROR" > /dev/stderr
       let TESTS_FAILED=$TESTS_FAILED+1
-    fi
-    if [ $? -eq 0 ]
-    then
-      let TESTS_SUCCEEDED=$TESTS_SUCCEEDED+1
+    else
+      echo "\033[0;32m[PASSED]\033[0m"
+      let TESTS_PASSED=$TESTS_PASSED+1
     fi
 
     let COUNTER=$COUNTER+1
 done
 
 echo "\nTest run completed"
-echo "$TESTS_SUCCEEDED tests succeeded"
+echo "$TESTS_PASSED tests passed"
 echo "$TESTS_FAILED tests failed"
 
 exit 0
