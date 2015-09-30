@@ -76,6 +76,13 @@ do
     echo "Checking out to commit $COMMIT"
     git checkout $COMMIT
 
+    if [ -f "buildandpublish.steve" ]
+    then
+      /bin/sh "buildandpublish.steve"
+    else
+      echo "Steve script not found"
+    fi
+
     cd $CWD
 
     $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
