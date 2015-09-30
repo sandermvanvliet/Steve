@@ -1,14 +1,15 @@
 #!/bin/sh
 # vim: set ts=4 :
+STEVE_OUTPUT=steve-output
 
 function AssertEqual {
-    if [ -z $1 ] || [ -z $2 ]
+    if [ -z "$1" ] || [ -z "$2" ]
     then
         echo "AssertEqual expects two arguments" > /dev/stderr
         exit 1
     fi
 
-    if [ "$1" -ne "$2" ]
+    if [ "$1" != "$2" ]
     then
         TestFailure "Expected \"$1\" to be \"$2\""
         exit 1
