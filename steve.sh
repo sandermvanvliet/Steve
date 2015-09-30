@@ -41,7 +41,7 @@ fi
 
 echo "$NUMBER_OF_REQUESTS requests pending"
 
-for request in `find $QUEUE -type f \( -name *.request \) -exec basename {} \; | sort`
+for request in `find $QUEUE -type f \( -name *.request \) -exec basename {} \; | sed -e 's/\.request//' | sort`
 do
     echo "Running request $request"
 done
