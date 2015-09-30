@@ -11,6 +11,13 @@ export TEST_NAME="Empty queue should print message that queue is empty"
 
 
 # Arrange goes here
+
+# Ensure queue exists
+if [ ! -d $QUEUE ]
+then
+  mkdir $QUEUE
+fi
+
 rm -f $QUEUE/*.request
 
 # Act: Run steve
