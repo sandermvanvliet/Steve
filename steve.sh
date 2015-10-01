@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 # vim: set ts=4 :
 
 VERSION="0.0.1"
 VERBOSE=0
 
 function LogInfo {
-    echo "VERBOSE: $VERBOSE"
     if [ ! -z "$1" ] && [ $VERBOSE -eq 1 ]
     then
       echo "$1"
@@ -15,7 +14,7 @@ function LogInfo {
 function LogError {
     if [ ! -z "$1" ]
     then
-      echo "$1" > /dev/stderr
+      echo "$1" 1>&2
     fi
 }
 
@@ -27,7 +26,7 @@ fi
 
 if [ -z $STEVE_CONFIG ]
 then
-    STEVE_CONFIG=/usr/local/etc/steve.conf
+    STEVE_CONFIG=./steve.conf
 fi
 
 LogInfo "Steve version $VERSION"
