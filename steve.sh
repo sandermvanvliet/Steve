@@ -62,13 +62,13 @@ do
     COMMIT=`tail -n 1 "$QUEUE/$request.request"`
 
     echo "Cloning from $REPO_URI"
-    git clone "$REPO_URI" "$REQUEST_WORKING_DIR"
+    git clone "$REPO_URI" "$REQUEST_WORKING_DIR" -q
 
     CWD=`pwd -P`
     cd "$REQUEST_WORKING_DIR"
 
     echo "Checking out to commit $COMMIT"
-    git checkout $COMMIT
+    git checkout $COMMIT -q
 
     BUILD_STATUS=0
 
