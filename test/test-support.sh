@@ -37,6 +37,24 @@ function OutputContains {
     return 0
 }
 
+function OutputDoesNotContain {
+    if [ -z "$1" ]
+    then
+        echo "OutputDoesNotContain expects message parameter" > /dev/stderr
+        exit 1
+    fi
+
+    grep "$1" steve-output > /dev/null
+
+    if [ $? -eq 0 ]
+    then
+        TestFailure "Expected \"$1\" to be absent in output but it was found"
+        exit 1
+    fi
+
+    return 0
+}
+
 function TestFailure {
     if [ -z "$1" ]
     then
