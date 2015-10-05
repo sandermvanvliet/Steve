@@ -39,6 +39,12 @@ fi
 
 . $STEVE_CONFIG
 
+if [ -f "$STEVE_PID_FILE" ]
+then
+  LogInfo "Steve already running, stopping this instance"
+  exit 0
+fi
+
 if [ -z $QUEUE ]
 then
   QUEUE=/var/spool/steve
