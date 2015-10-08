@@ -97,6 +97,9 @@ do
     LogInfo "Checking out to commit $COMMIT"
     git checkout $COMMIT -q
 
+    COMMIT_SHORT_HASH=`git log -1 --format=%h $COMMIT`
+    COMMIT_MESSAGE=`git log -1 --format=%s $COMMIT`
+
     BUILD_STATUS=0
 
     if [ -f "buildandpublish.steve" ]
@@ -113,8 +116,13 @@ do
 
     if [ $BUILD_STATUS -ne 0 ]
     then
-      $NOTIFIER "Steve" 2 "Build failed" "Commit $COMMIT"
+      $NOTIFIER "Steve" 2 "Build failed" "$COMMIT_SHORT_HASH $COMMIT_MESSAGE"
     else
-      $NOTIFIER "Steve" 0 "Build completed" "Built commit $COMMIT"
+      $NOTIFIER "Steve" 0 "Build completed" "$COMMIT_SHORT_HASH $COMMIT_MESSAGE"
+    fi
+
+    if [ -f "$STEVE_PID_FILE" ]
+    then
+        rm $STEVE_PID_FILE
     fi
 done
