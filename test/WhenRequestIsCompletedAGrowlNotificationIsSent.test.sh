@@ -43,4 +43,4 @@ EXITCODE=$?
 #### Assert: Check expected results
 AssertEqual $EXITCODE 0
 MESSAGE=`tail -n 1 $PROWL_STUB_OUTPUT`
-AssertEqual "$MESSAGE" "Steve|0|Build completed|Built commit a4ce5821f91cf5631013a2e85c696a4855a4f0da"
+AssertEqual "$MESSAGE" "Steve|0|Build completed|a4ce5821 Added dummy README"
