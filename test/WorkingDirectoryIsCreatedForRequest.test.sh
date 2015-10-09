@@ -6,20 +6,9 @@
 # Source the configuration to get a reference to the queue
 . ./test-steve.conf
 
+./before-test.sh
+
 #### Arrange goes here
-if [ ! -d $QUEUE ]
-then
-  mkdir $QUEUE
-fi
-if [ ! -d $WORKING_DIR ]
-then
-  mkdir $WORKING_DIR
-else
-  rmdir $WORKING_DIR/*
-fi
-
-rm -f $QUEUE/*.request
-
 touch $QUEUE/20150102122020.request
 
 #### Act: Run steve
