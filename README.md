@@ -41,4 +41,7 @@ Or just copy the post-receive.template to your hooks folder.
 ## Contributing
 If you want to hack Steve have a look at the test folder. To add new behaviour or modify existing behaviour please add a test first. See the README.md in the test folder for details.
 
+## Additional info
 Steve was created by Sander van Vliet (@Codenizer)
+
+Steve is licensed under the MIT license, see LICENSE
