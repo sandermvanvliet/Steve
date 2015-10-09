@@ -1,0 +1,10 @@
+#!/bin/sh
+
+REQUEST=`date +%Y%m%d%H%M%S`.request
+
+while read oldvalue newvalue refname
+do
+  echo "file:///$PWD" > /var/spool/steve/$REQUEST
+  echo "$newvalue" >> /var/spool/steve/$REQUEST
+done
+
