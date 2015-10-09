@@ -6,12 +6,11 @@
 # Source the configuration to get a reference to the queue
 . ./test-steve.conf
 
+#### Arrange goes here
 
-# Arrange goes here
+#### Ensure queue exists
 
-# Ensure queue exists
-
-# Act: Run steve
+#### Act: Run steve
 ./execsteve.sh
 EXITCODE=$?
 

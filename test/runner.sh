@@ -28,6 +28,11 @@ do
 
     echo "[$testname] \c"
 
+    if [ -f "before-test.sh" ]
+    then
+      /bin/sh before-test.sh
+    fi
+
     TESTERROR="$(/bin/sh $testfile 2>&1 > /dev/null)"
 
     if [ $? -ne 0 ]

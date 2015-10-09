@@ -6,15 +6,12 @@
 # Source the configuration to get a reference to the queue
 . ./test-steve.conf
 
+#### Arrange goes here
 
-# Arrange goes here
-
-# Ensure queue exists
-
-# Act: Run steve
+#### Act: Run steve
 ./execsteve.sh --quiet
 EXITCODE=$?
 
-# Assert: Check expected results
+#### Assert: Check expected results
 #AssertEqual $EXITCODE 0
 OutputDoesNotContain "Steve version"

@@ -7,20 +7,6 @@
 . ./test-steve.conf
 
 #### Arrange goes here
-if [ ! -d $QUEUE ]
-then
-  mkdir $QUEUE
-fi
-
-if [ ! -d $WORKING_DIR ]
-then
-  mkdir $WORKING_DIR
-else
-  rm -rf $WORKING_DIR/*
-fi
-
-rm -f $QUEUE/*.request
-
 # Create a new request in the queue
 touch $QUEUE/20150102122020.request
 

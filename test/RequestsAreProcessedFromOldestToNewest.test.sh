@@ -7,13 +7,6 @@
 . ./test-steve.conf
 
 #### Arrange goes here
-if [ ! -d $QUEUE ]
-then
-  mkdir $QUEUE
-else
-  rm -f $QUEUE/*.request
-fi
-
 touch $QUEUE/20150102125050.request
 touch $QUEUE/20150102122020.request
 touch $QUEUE/20150102123030.request

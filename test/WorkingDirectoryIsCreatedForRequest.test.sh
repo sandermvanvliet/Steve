@@ -6,8 +6,6 @@
 # Source the configuration to get a reference to the queue
 . ./test-steve.conf
 
-./before-test.sh
-
 #### Arrange goes here
 touch $QUEUE/20150102122020.request
 
