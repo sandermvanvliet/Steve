@@ -29,4 +29,4 @@ EXITCODE=$?
 #### Assert: Check expected results
 AssertEqual $EXITCODE 0
 MESSAGE=`tail -n 1 $PROWL_STUB_OUTPUT`
-AssertEqual "$MESSAGE" "Steve|2|Build failed|Commit 480b39a77acaaa3484892b07808e12cbb177f08e"
+AssertEqual "$MESSAGE" "Steve|2|Build failed|480b39a Changed script so that it fails"
