@@ -18,6 +18,17 @@ function LogError {
     fi
 }
 
+function Exit {
+    EXIT_CODE=$1
+    if [ -z "$EXIT_CODE" ]
+    then
+      EXIT_CODE=1
+    fi
+
+    rm -f $STEVE_PID_FILE
+
+    exit $EXIT_CODE
+}
 
 if [ ! -z "$1" ] && [ "$1" = "--verbose" ]
 then
@@ -34,7 +45,7 @@ LogInfo "Steve version $VERSION"
 if [ ! -f $STEVE_CONFIG ]
 then
   LogError "Config not found at $STEVE_CONFIG, refusing to run"
-  exit 1
+  Exit 1
 fi
 
 . $STEVE_CONFIG
@@ -42,7 +53,7 @@ fi
 if [ -f "$STEVE_PID_FILE" ]
 then
   LogInfo "Steve already running, stopping this instance"
-  exit 0
+  Exit 0
 fi
 
 if [ -z $QUEUE ]
@@ -55,7 +66,7 @@ LogInfo "Looking in queue: $QUEUE"
 if [ ! -d $QUEUE ]
 then
   LogError "Queue not found or not a directory"
-  exit 1
+  Exit 1
 fi
 
 NUMBER_OF_REQUESTS=`find $QUEUE -type f | wc -l | tr -d '[[:space;]]'`
@@ -63,7 +74,7 @@ NUMBER_OF_REQUESTS=`find $QUEUE -type f | wc -l | tr -d '[[:space;]]'`
 if [ $NUMBER_OF_REQUESTS -eq 0 ]
 then
   LogInfo "No requests pending"
-  exit 0
+  Exit 0
 fi
 
 LogInfo "$NUMBER_OF_REQUESTS requests pending"
@@ -126,3 +137,5 @@ do
         rm $STEVE_PID_FILE
     fi
 done
+
+Exit 0
