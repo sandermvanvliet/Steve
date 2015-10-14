@@ -7,26 +7,6 @@
 . ./test-steve.conf
 
 #### Arrange goes here
-if [ ! -d $QUEUE ]
-then
-  mkdir $QUEUE
-fi
-
-if [ ! -d $WORKING_DIR ]
-then
-  mkdir $WORKING_DIR
-else
-  rm -rf $WORKING_DIR/*
-fi
-
-rm -f $QUEUE/*.request
-
-# Clean up possible stale repository
-if [ -d testdata/repo ]
-then
-  rm -rf testdata/repo
-fi
-
 # Extract test repository
 tar -zxf testdata/repo.tar.gz -C testdata
 
@@ -43,4 +23,4 @@ EXITCODE=$?
 #### Assert: Check expected results
 AssertEqual $EXITCODE 0
 MESSAGE=`tail -n 1 $PROWL_STUB_OUTPUT`
-AssertEqual "$MESSAGE" "Steve|2|Build failed|Commit 480b39a77acaaa3484892b07808e12cbb177f08e"
+AssertEqual "$MESSAGE" "Steve|2|Build failed|480b39a Changed script so that it fails"

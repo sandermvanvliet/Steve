@@ -7,26 +7,6 @@
 . ./test-steve.conf
 
 #### Arrange goes here
-if [ ! -d $QUEUE ]
-then
-  mkdir $QUEUE
-fi
-
-if [ ! -d $WORKING_DIR ]
-then
-  mkdir $WORKING_DIR
-else
-  rm -rf $WORKING_DIR/*
-fi
-
-rm -f $QUEUE/*.request
-
-# Clean up possible stale repository
-if [ -d testdata/repo ]
-then
-  rm -rf testdata/repo
-fi
-
 # Extract test repository
 tar -zxf testdata/repo.tar.gz -C testdata
 

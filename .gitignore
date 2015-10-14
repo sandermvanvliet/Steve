@@ -7,3 +7,4 @@ test/steve-output
 test/steve-working
 test/testdata/repo
 test/prowl-output
+test/steve.pid
