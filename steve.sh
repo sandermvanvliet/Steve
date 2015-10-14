@@ -102,7 +102,7 @@ do
     LogInfo "Cloning from $REPO_URI"
     git clone "$REPO_URI" "$REQUEST_WORKING_DIR" -q
 
-    CWD=`pwd -P`
+    CURRENT_WORKING_DIR=`pwd -P`
     cd "$REQUEST_WORKING_DIR"
 
     LogInfo "Checking out to commit $COMMIT"
@@ -123,7 +123,7 @@ do
       LogInfo "Steve script not found"
     fi
 
-    cd $CWD
+    cd $CURRENT_WORKING_DIR
 
     rm "$QUEUE/$request.request"
 
@@ -132,11 +132,6 @@ do
       $NOTIFIER "Steve" 2 "Build failed" "$COMMIT_SHORT_HASH $COMMIT_MESSAGE"
     else
       $NOTIFIER "Steve" 0 "Build completed" "$COMMIT_SHORT_HASH $COMMIT_MESSAGE"
-    fi
-
-    if [ -f "$STEVE_PID_FILE" ]
-    then
-        rm $STEVE_PID_FILE
     fi
 done
 
