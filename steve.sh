@@ -95,7 +95,9 @@ do
 
     if [ -f "buildandpublish.steve" ]
     then
-      /bin/sh "buildandpublish.steve" 2>&1 $QUEUE/$request.log
+	  {
+      	/bin/sh "buildandpublish.steve" 
+	  } 2>&1 $QUEUE/$request.log
       BUILD_STATUS=$?
     else
       LogInfo "Steve script not found"
